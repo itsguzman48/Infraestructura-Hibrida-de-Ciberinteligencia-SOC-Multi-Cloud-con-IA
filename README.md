@@ -30,8 +30,7 @@ El proyecto sigue un modelo de seguridad **Assume Breach** (asumir compromiso), 
 2. **Nodo Cerebro SOC (Microsoft Azure):** Completamente cerrado a internet (NSG estricto). Ejecuta un demonio en Python (`collector.py`) que ingesta los logs mediante streaming SSH.
 3. **Red Privada (WireGuard):** Conecta todos los nodos mediante túneles cifrados (ChaCha20-Poly1305). Azure siempre inicia la conexión; los sensores no pueden comunicarse hacia el cerebro.
 
-*(Añade aquí una captura de tu diagrama de arquitectura)*
-`![Arquitectura](assets/arquitectura.png)`
+(assets/motorSOC.png)
 
 ## 🚀 Características Técnicas Principales
 
