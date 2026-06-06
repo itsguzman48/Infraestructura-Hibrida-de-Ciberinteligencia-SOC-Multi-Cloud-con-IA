@@ -17,6 +17,7 @@ El pipeline de datos alimenta de forma asíncrona cuadros de mando operativos en
 
 *(Detección de campaña dirigida contra nodos Solana basada en el top de contraseñas de fuerza bruta)*
 ![Top Contraseñas](assets/grafana-passwords.png)
+
 Durante su operación en producción, el sistema capturó e interpretó ataques reales globales:
 * **Eventos capturados:** +35.600 intentos SSH en 14 días.
 * **Orígenes detectados:** IPs de 80 países distintos.
