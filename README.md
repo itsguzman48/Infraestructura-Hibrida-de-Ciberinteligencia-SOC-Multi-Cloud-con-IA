@@ -1,10 +1,10 @@
-# 🛡️ Infraestructura Híbrida de Ciberinteligencia: SOC Multi-Cloud con IA
+#  Infraestructura Híbrida de Ciberinteligencia: SOC Multi-Cloud con IA
 ![Mapa ataques](assets/mapa_ataques.png)
 ![Python](https://img.shields.io/badge/Python-3.12-blue) ![Docker](https://img.shields.io/badge/Docker-Cowrie-blue) ![WireGuard](https://img.shields.io/badge/WireGuard-VPN-red) ![Llama 3.1](https://img.shields.io/badge/AI-Llama_3.1-orange) ![Azure](https://img.shields.io/badge/Cloud-Azure-blue) ![DigitalOcean](https://img.shields.io/badge/Cloud-DigitalOcean-blue)
 
 Proyecto de arquitectura de sistemas y ciberinteligencia diseñado para capturar, analizar y clasificar ataques SSH en tiempo real. Este sistema despliega honeypots en múltiples nubes, centraliza la recolección a través de redes privadas y utiliza inteligencia artificial (Llama 3.1) para automatizar el triaje y mapear tácticas contra el framework MITRE ATT&CK.
 
-## 📊 Resultados Destacados (En Producción)
+##  Resultados Destacados (En Producción)
 ### Visualización y Análisis (Grafana & Power BI)
 
 El pipeline de datos alimenta de forma asíncrona cuadros de mando operativos en Grafana (tiempo real) e informes ejecutivos en Power BI (histórico).
@@ -23,7 +23,7 @@ Durante su operación en producción, el sistema capturó e interpretó ataques 
 * **Orígenes detectados:** IPs de 80 países distintos.
 * **Inteligencia extraída:** Identificación de botnets especializadas atacando nodos de blockchain (Solana) mediante fuerza bruta y scripts automatizados de persistencia.
 
-## 🏗️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 
 El proyecto sigue un modelo de seguridad **Assume Breach** (asumir compromiso), separando físicamente el plano de captura (expuesto) del plano de análisis (aislado).
 
@@ -33,7 +33,7 @@ El proyecto sigue un modelo de seguridad **Assume Breach** (asumir compromiso), 
 
 ![MotorSOS](assets/motorSOC.png)
 
-## 🚀 Características Técnicas Principales
+##  Características Técnicas Principales
 
 * **Streaming Asíncrono sin latencia:** Uso de subprocesos (`subprocess` + `ssh tail -f`) para recolectar logs JSON de múltiples sensores simultáneamente sobre túneles WireGuard.
 * **Motor SOC Multihilo (Threading):** Arquitectura de colas en RAM protegida por cerrojos lógicos (`threading.Lock()`). Un hilo captura en tiempo real, otro hilo (daemon) procesa lotes cada 10 minutos.
@@ -41,14 +41,14 @@ El proyecto sigue un modelo de seguridad **Assume Breach** (asumir compromiso), 
 * **Mitigación de "Token Exhaustion":** Sanitización automatizada de *payloads* largos (scripts en Base64, claves RSA) en la capa de Python antes de consultar la API del LLM, protegiendo el contexto y la cuota.
 * **Salida Dual y Observabilidad:** Alertas operativas en tiempo real vía bot de **Telegram** (Markdown) y almacenamiento estructurado en **SQLite** con modo WAL activado para consultas en vivo desde **Grafana** e histórico en **Power BI**.
 
-## 📁 Estructura del Repositorio
+##  Estructura del Repositorio
 
 * `/src`: Código fuente del motor SOC (`collector.py`) asíncrono y multisensor.
 * `/infra`: Configuraciones de infraestructura como código (Docker Compose, Reglas UFW).
 * `/dashboards`: Consultas SQL optimizadas utilizadas para la monitorización en Grafana.
 * `/docs`: Memoria técnica completa y presentación ejecutiva del proyecto.
 
-## 💡 Resoluciones Técnicas
+##  Resoluciones Técnicas
 Durante la puesta en producción se resolvieron diversos retos operativos de infraestructura real:
 * Gestión de cuotas de API y *throttling* (migración de proveedores de IA y *Exponential Backoff*).
 * Resolución de conflictos de permisos (UID 1000) entre los volúmenes del Host y contenedores Docker.
